@@ -1,0 +1,27 @@
+.card-section-header {
+    margin-top: 3rem;
+    margin-bottom:3rem;
+}
+
+.recently-uploded-notes-card, .All-Uploaded-Notes-card {
+    justify-content: space-between;
+    margin-bottom: 3rem;
+}
+ {
+    justify-content: space-between;
+    margin-bottom: 3rem;
+}
+
+.card {
+    width: 100%;
+    max-height: 100%;
+}
+
+.card-body {
+    padding: 1.25rem;
+}
+
+body {
+    padding-bottom: 3rem;
+}
+
