@@ -1,50 +1,12 @@
-/* General setup */
 
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0 auto;
-  min-width: 1000px;
-  max-width: 1400px;
-}
-
-/* Layout */
-
-section {
-  float: left;
-  width: 50%;
-}
-
-aside {
-  float: left;
-  width: 30%;
-}
-
-nav {
-  float: left;
-  width: 20%;
-}
-
-footer {
-  clear: both;
-}
-
-header, section, aside, nav, footer {
-  padding: 20px;
-}
-
-/* header and footer */
-
-header, footer {
-  border-top: 5px solid #a66;
-  border-bottom: 5px solid #a66;
-}
 html, body{
-    background-color: #7FFFD4;
+    background: #ffffff; /* Old browsers */
+background: -moz-linear-gradient(top, #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-9 */ 
 }
-h1{
+/*h1{
   font-size: 2.5rem;
   color: blue;
   font-family: "Snell Roundhand", cursive;
@@ -52,6 +14,7 @@ h1{
 
 
 }
+
 #Me{
   font-size: 3.0rem;
   text-decoration: underline;
@@ -77,4 +40,4 @@ h1{
     font-size: 1.5rem;
     color:  #FF7F50;
   font-family: Arial Narrow, sans-serif;
-}
+}*/

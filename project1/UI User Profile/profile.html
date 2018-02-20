@@ -1,32 +1,65 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
+
   <head>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Mock UI User Profile</title>
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
- <link href="decoration.css" type="text/css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel = "stylesheet" href = "decoration.css">
+    
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" tabindex="0" role="button" href="#" data-container="body" data-trigger="focus" title="Username" data-toggle="popover" data-placement="bottom" 
+                data-content='
+                <div class="list-group list-group-flush">
+                    <a href="#" class="list-group-item list-group-item-action">My Profile</a>
+                    <a href="#" class="list-group-item list-group-item-action">Followers</a>
+                    <a href="#" class="list-group-item list-group-item-action">Settings</a>
+                </div>
+                '>
+                    
+                    <img src="assets/icons/ic_profile.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+                    Jaylen Brown  
+                </a>
 
-</head>
+                <div class="btn-group" role="group" aria-label="Navigation" style="text-align:center;">
+                    <button type="button" class="btn btn-dark">Upload</button>
+                    <button type="button" class="btn btn-dark">Recent</button>
+                    <button type="button" class="btn btn-dark">Top</button>
+                    <button type="button" class="btn btn-dark">Favorite</button>
+                    <button type="button" class="btn btn-dark">
+                        <img src="assets/icons/ic_search.svg" width="30" height="30">
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </head>
+
+    <body>
+        <div class="container">
 <body>
-	<div class="container-fluid">
+  
+
+    <div class="container-fluid">
  
 
-	<header>
-	 <h1>Jaylen Brown</h1>
-	</header>
-	<div class = "row">
-		<div class = "col-sm">
-    <img src="jb.jpg" alt="Balling", height = 400, width = 400, class = "img-thumbnail" class = "rounded">
+    <header>
+     <h2>Your Profile Picture</h2>
+    </header>
+    <div class = "row">
+        <div class = "col-sm">
+    <img src="jb.jpg" alt="Balling", height = 400, width = 400, class = "img-thumbnail", class = "rounded circle" >
 </div>
-	<div class = "col-sm">
-     <p class ="text-center" id = "Me">About Me</p>
+    <div class = "col-sm">
+     <h2 class ="card-section-header" align = "center" id = "Me">About Me</h2>
      <p class = "text-center" id = "MeTxt"> Junior Computer Science Major at the University of Massachusetts Amherst. Part-time Boston Celtic.</p>
  </div>
     <div class = "col-sm">
-    	<p class = "text-center" id = "rep"> Your Rep</p>
-    	<table class="table table-sm">
+        <h2 class = "card-section-header" align = "center" id = "rep"> Your Rep</h2>
+        <table class="table table-sm" border = 1>
   <thead>
     <tr>
       
@@ -56,42 +89,39 @@
     </tr>
   </tbody>
 </table>
-    <p class = "text-center" id= "Avg"> Average GPA: 3.1 </p>
+    <h5 class = "card-section-header" id= "Avg" align = "center"> Average GPA: 3.1 </h5>
 
     </div>
-
-
-
 </div>
-	<div class = "row">
-		<div class = "col-sm">
-		<div class="col-xs-12" style="height:50px;"></div>
-			<p class = "text-left">Favorite Authors</p>
-	<div class="list-group">
+<div class = "row">
+        <div class = "col-sm">
+        <div class="col-xs-12" style="height:50px;"></div>
+            <h2 class = "card-section-header" align = "center">Favorite Authors</h2>
+    <div class="list-group">
   <a href="#" class="list-group-item list-group-item-action">Timothy Richards</a>
   <a href="#" class="list-group-item list-group-item-action">Brad Stevens</a>
   <a href="#" class="list-group-item list-group-item-action">Chigozie Ikoro</a>
   <a href="#" class="list-group-item list-group-item-action">Kyle Toohey</a>
 </div>
 
-		</div>
-		<div class = "col-sm">
-				<div class="col-xs-12" style="height:50px;"></div>
-			<p class = "text-left">Recommended Course Notes Based on History</p>
-			<div class="list-group">
+        </div>
+        <div class = "col-sm">
+                <div class="col-xs-12" style="height:50px;"></div>
+            <h2 class = "card-section-header" align = "center">Recommended Course Notes Based on History</h2>
+            <div class="list-group">
   <a href="#" class="list-group-item list-group-item-action">CS326: Intro to Javascript</a>
   <a href="#" class="list-group-item list-group-item-action">CS311: Greedy Algorithms</a>
   <a href="#" class="list-group-item list-group-item-action">CS453: Bandwidth and Throughput</a>
   <a href="#" class="list-group-item list-group-item-action">MATH235: Eigenvalues and Eigenvectors</a>
 </div>
 
-	</div>
+    </div>
 </div>
 <div class = "row">
-	<div class = "col-sm">
-		<div class="col-xs-12" style="height:50px;"></div>
-			<p class = "text-left">Your Course Schedule: UMASS AMHERST Spring 2018</p>
-			<div class="list-group">
+    <div class = "col-sm">
+        <div class="col-xs-12" style="height:50px;"></div>
+            <h2 class = "card-section-header" align = "center">Your Course Schedule: UMASS AMHERST Spring 2018</h2>
+            <div class="list-group">
   <a href="#" class="list-group-item list-group-item-action">Web Programming</a>
   <a href="#" class="list-group-item list-group-item-action">Computer Networks</a>
   <a href="#" class="list-group-item list-group-item-action">Intro to Algorithms</a>
@@ -100,9 +130,9 @@
 </div>
 </div>
 <div class = "col-sm">
-		<div class="col-xs-12" style="height:50px;"></div>
-			<p class = "text-left">Recently Viewed Notes</p>
-						<div class="list-group">
+        <div class="col-xs-12" style="height:50px;"></div>
+            <h2 class = "card-section-header" align = "center">Recently Viewed Notes</h2>
+                        <div class="list-group">
   <a href="#" class="list-group-item list-group-item-action">Data Structures: Binary Search Trees</a>
   <a href="#" class="list-group-item list-group-item-action">Chemistry: Endothermic vs Exothermic Reactions</a>
 
@@ -111,10 +141,10 @@
 
 
 
-	</body>
+    </body>
 
 
 
-  
+
+</div>
 </html>
-
