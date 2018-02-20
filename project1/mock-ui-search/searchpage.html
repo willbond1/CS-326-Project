@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" tabindex="0" role="button" href="#" data-container="body" data-trigger="focus" title="Username" data-toggle="popover" data-placement="bottom" 
+                data-content='
+                <div class="list-group list-group-flush">
+                    <a href="#" class="list-group-item list-group-item-action">My Profile</a>
+                    <a href="#" class="list-group-item list-group-item-action">Followers</a>
+                    <a href="#" class="list-group-item list-group-item-action">Settings</a>
+                </div>
+                '>
+                    
+
+
+                    <img src="assets/icons/ic_profile.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+                    Jaylen Brown
+                </a>
+
+                <div class="btn-group" role="group" aria-label="Navigation" style="text-align:center;">
+                    <button type="button" class="btn btn-dark">Upload</button>
+                    <button type="button" class="btn btn-dark">Recent</button>
+                    <button type="button" class="btn btn-dark">Top</button>
+                    <button type="button" class="btn btn-dark">Favorite</button>
+                    <button type="button" class="btn btn-dark">
+                        <img src="assets/icons/ic_search.svg" width="30" height="30">
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </head>
+    <body>
+    	<div class="container">
+            <h1 class="card-section-header" align="left">Search <img src="assets/icons/ic_chevron_right.svg" width="30" height="30"></h1>
+            <div class="topnav">
+				<input type="text" placeholder="JavaScript">
+				<p><img src="assets/icons/ic_search.svg" width="30" height="30"> Advanced search options </p>
+				 
+			</div>
+            <h2 class="card-section-header" align="center">Search Results <img src="assets/icons/ic_chevron_right.svg" width="30" height="30"></h2>
+            <div class="row" id="search-notes" align="center">
+                <div class="col-sm-3 col-xs-2 my-note-card">
+                    <div class="card">
+                        <img class="card-img-top img-responseive" src="https://s3.amazonaws.com/codecademy-images/javascript.png" alt="Note">
+                        <div class="card-body">
+                            <h4 class="card-title">Intro to Javascript Notes</h4>
+                            <p class="card-text">CS326: Web Programming</p>
+                            <p class="card-text">Author: Timothy Richards</p>
+                            <p class="card-text">Average Rating: 97%</p>
+                            <a href="#" class="btn btn-dark">Open</a>
+                   		</div>
+                    </div>
+                </div>
+                <div class="col-sm-3 col-xs-2 my-note-card">
+                    <div class="card">
+                        <img class="card-img-top img-responseive" src="https://cms-assets.tutsplus.com/uploads/users/34/posts/26194/preview_image/javascript.png" alt="Note">
+                        <div class="card-body">
+                            <h4 class="card-title">My Javascript Notes</h4>
+                            <p class="card-text">CS326: Web Programming</p>
+                            <p class="card-text">Author: John Smith</p>
+                            <p class="card-text">Average Rating: 91%</p>
+                            <a href="#" class="btn btn-dark">Open</a>
+                   		</div>
+                    </div>
+                </div>
+                <div class="col-sm-3 col-xs-2 my-note-card">
+                    <div class="card">
+                        <img class="card-img-top img-responseive" src="https://qph.fs.quoracdn.net/main-qimg-1f99b9ce08edd2309efff97b710ffcbe" alt="Note">
+                        <div class="card-body">
+                            <h4 class="card-title">Javascript</h4>
+                            <p class="card-text">CS145: Intro to Web Design</p>
+                            <p class="card-text">Author: Bob Jones </p>
+                            <p class="card-text">Average Rating: 82%</p>
+                            <a href="#" class="btn btn-dark">Open</a>
+                   		</div>
+                    </div>
+                </div>
+                <div class="col-sm-3 col-xs-2 my-note-card">
+                    <div class="card">
+                        <img class="card-img-top img-responseive" src="https://docs.oracle.com/javase/9/dcommon/img/1-java.png" alt="Note">
+                        <div class="card-body">
+                            <h4 class="card-title">Not Java</h4>
+                            <p class="card-text">CS326: Web Programming</p>
+                            <p class="card-text">Author: Kyle Toohey </p>
+                            <p class="card-text">Average Rating: 24%</p>
+                            <a href="#" class="btn btn-dark">Open</a>
+                   		</div>
+                    </div>
+                </div>
+            </div>
+            <h2 class="card-section-footer" align="center">Load more results <img src="assets/icons/ic_chevron_right.svg" width="30" height="30"></h2>
+    </body>
+     <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</html>
