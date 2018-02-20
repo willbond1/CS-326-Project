@@ -3,30 +3,30 @@ var Card = function(noteTitle, noteAuthor, noteDescription) {
     this.noteAuthor = noteAuthor;
     this.noteDescription = noteDescription;
   }
-var list = [new Card("Dijkstra's Algorithm", "Dijkstra", "This graph search algorithm is used in different applications where the problem can be modeled as a graph and you have to find the shortest path between two nodes."),
-            new Card("Random Number Generation", "RNGod", "These are used in a large number of applications, from interlink connection, cryptography, secure hash algorithm, video games, artificial intelligence, optimization, to initial conditions for problems, finances, etc."),
-            new Card("Depth First Search", "Charles Tremeaux", "An algorithm for traversing or searching tree or graph data structures."),
+var list = [new Card("Dijkstra's Algorithm", "Dijkstra", "This graph search algorithm is used in different ..."),
+            new Card("Random Number Generation", "RNGod", "These are used in a large number of applications..."),
+            new Card("Depth First Search", "Charles Tremeaux", "An algorithm for traversing or searching tree or graph data structures..."),
             ]
 
 
 
 
-for (var i = 0; i < 3; i++) {
-    var card = document.querySelector(".my-note-card");
-    var copy = card.cloneNode(true);
+// for (var i = 0; i < 3; i++) {
+//     var card = document.querySelector(".my-note-card");
+//     var copy = card.cloneNode(true);
 
-    var cardBody = copy.childNodes[1].childNodes[3];
-    var cardTitle = cardBody.childNodes[1];
-    var cardText = cardBody.childNodes[3];
+//     var cardBody = copy.childNodes[1].childNodes[3];
+//     var cardTitle = cardBody.childNodes[1];
+//     var cardText = cardBody.childNodes[3];
     
-    var curCard = list[i];
+//     var curCard = list[i];
 
-    cardTitle.innerText = curCard.noteTitle;
-    cardText.innerText = curCard.noteDescription;
+//     cardTitle.innerText = curCard.noteTitle;
+//     cardText.innerText = curCard.noteDescription;
 
-    var myNotes = document.querySelector("#my-notes");
-    myNotes.appendChild(copy);
-}
+//     var myNotes = document.querySelector("#my-notes");
+//     myNotes.appendChild(copy);
+// }
 
 for (var i = 0; i < 3; i++) {
 
