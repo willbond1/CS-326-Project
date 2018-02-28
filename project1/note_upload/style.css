@@ -1,0 +1,20 @@
+body {
+    padding-bottom: 3rem;
+}
+
+.row {
+	padding: 2rem;
+}
+
+form {
+    color: white;
+    padding: 2rem;
+}
+
+.form-row {
+    padding: 1.5rem;
+}
+
+label {
+    margin: 1rem;
+}
