@@ -1,0 +1,66 @@
+{% extends "base_generic.html" %}
+{% block content %}
+
+<div class="note-header">
+        <div class="row">
+            <div class="col-md-6">
+                <h1 class="note-title">{{ note.title }}</h1>
+            </div>
+            <div class="col-md-6">
+                <h1 class="text-right">
+                    <button type="button" class="btn" style="background-color:transparent">
+                        {% load static %}
+                        <img src="{% static 'note_app/assets/icons/ic_like.svg' %}" width="30" height="30">
+                    </button>
+                    <button type="button" class="btn" style="background-color:transparent">
+                        {% load static %}
+                        <img src="{% static 'note_app/assets/icons/ic_favorite_filled.svg' %}" width="30" height="30">
+                    </button>
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div>
+                {{ note.author }}
+            </div>
+            <div>
+                {{ note.course }}
+            </div>
+            <div>
+                {{ note.school }}, {{ note.semester }}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <!-- Put something here if we want it to the right of the 'info' and below the 'favorite' icon -->
+        </div>
+
+    </div>
+
+    <div class="card note-card d-flex">
+
+        <div class="card-body align-items-center d-flex justify-content-center">
+            A NOTE/PDF PAGE WOULD GO IN THIS BOX
+        </div>
+
+    </div>
+
+    <div class="btn-group float-right note-pages" role="group" aria-label="Note Pages">
+        <button type="button" class="btn btn-secondary active">1</button>
+        <button type="button" class="btn btn-secondary">2</button>
+        <button type="button" class="btn btn-secondary">3</button>
+        <button type="button" class="btn btn-secondary">4</button>
+        <button type="button" class="btn btn-secondary">5</button>
+        <button type="button" class="btn btn-secondary">6</button>
+        <button type="button" class="btn btn-secondary">7</button>
+    </div>
+</div>
+
+
+{% load static %}
+<script src="{% static 'note_app/js/note.js' %}"></script>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'note_app/css/note.css' %}">
+{% endblock %}
