@@ -42,3 +42,9 @@ class Course(models.Model):
     course_id = models.AutoField(primary_key = True)
     title = models.CharField(max_length = 30, verbose_name = 'Title')
     school = models.ForeignKey(School, on_delete = models.CASCADE)
+    professor = models.ForeignKey(Professor, on_delete = models.CASCADE)
+
+class Professor(model.Model):
+    professor_id = models.AutoField(primary_key = True)
+    first_name = models.CharField(max_length = 20, verbose_name = 'First Name')
+    last_name = models.CharField(max_length = 20, verbose_name = 'Last Name')
