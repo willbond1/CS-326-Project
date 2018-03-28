@@ -1,0 +1,47 @@
+{% extends "base_generic.html" %}
+{% block content %}
+
+<div class="row">
+	<div class="col"><h1>Upload Note Set</h1></div>
+</div>
+
+<form enctype="multipart/form-data" class="needs-validation bg-dark" action="/upload_notes/" method="post" novalidate>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <!-- <div class="form-row">
+        <label for="noteset">Note Set File</label>
+    	<div class="col">
+            <input type="file" class="form-control-file" id="noteset" required>
+            <div class="invalid-feedback">Please provide a noteset.</div>
+        </div>
+        <label for="thumbnail">Thumbnail Picture</label>
+   		<div class="col">
+            <input type="file" class="form-control-file" id="thumbnail">
+            <small id="thumbnailHelp" class="form-text text-muted">This will show up on results pages.</small>
+   		</div>
+   	</div>
+
+   	<div class="form-row">
+        <label for="course">Course Name</label>
+        <div class="col">
+            <input type="text" class="form-control" id="course" required>
+            <div class="invalid-feedback">Please provide a course name.</div>
+        </div>
+        <label for="number">Course Number</label>
+        <div class="col">
+            <input type="text" class="form-control" id="number" required>
+            <small id="numberHelp" class="form-text text-muted">Write subject abbreviation + number (e.g. CS326)</small>
+            <div class="invalid-feedback">Please provide a course number.</div>
+        </div>
+    </div>
+                   
+    <div class="form-row">
+        <label for="school">School Name</label>
+        <div class="col">
+            <input type="text" class="form-control" id="school" required>
+            <div class="invalid-feedback">Please provide a school.</div>
+        </div>
+    </div> -->
+    <button type="submit" class="btn btn-default" value="Submit">Upload</button>
+</form>
+{% endblock %}
