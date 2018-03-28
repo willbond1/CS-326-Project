@@ -6,7 +6,7 @@ from django.dispatch import receiver
 # Create your models here.
 class Profile(models.Model):
     profile_id = models.AutoField(primary_key = True)
-    user = models.OneToOne(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(max_length=500, blank=True)
     favorites = models.ManyToManyField('note_app.Note', related_name="favorites", blank=True)
     uploaded = models.ManyToManyField('note_app.Note', related_name="uploaded", blank=True)
@@ -15,7 +15,7 @@ class Profile(models.Model):
     karma = models.SmallIntegerField(default=0)
 
     class Meta:
-        ordering = ['user.username']
+        ordering = ['profile_id']
     
     def __str__(self):
         return '{0} {1}'.format(self.user.first_name, self.user.last_name)
@@ -56,7 +56,7 @@ class Course(models.Model):
 class Note(models.Model):
     note_id = models.AutoField(primary_key = True)
     note_file = models.FileField(upload_to="../static/note_app/assets/notes/")
-    thumbnail = models.ImageField(upload_to="../static/note_app/assets/thumbnails/")
+    thumbnail = models.ImageField(upload_to="../static/note_app/assets/thumbnails/", blank=True)
     author = models.ForeignKey(Profile, on_delete = models.CASCADE)
     school = models.ForeignKey(School, on_delete = models.CASCADE)
     title = models.CharField(max_length = 180, verbose_name = 'Title') # Can be changed to a date or whatever

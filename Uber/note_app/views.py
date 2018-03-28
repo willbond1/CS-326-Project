@@ -1,9 +1,13 @@
 from django.shortcuts import render
 from django.views import generic
-from .models import User, Note
-from django.http import HttpResponseRedirect
+from .models import Note
+from django.contrib.auth.models import User
 
-from .forms import NoteForm, UserForm, CommentForm
+from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
+from django.db import transaction
+
+from .forms import NoteForm, UserForm, CommentForm, Profile
 
 # Create your views here.
 # def index(request):
@@ -23,7 +27,7 @@ class DashboardView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super(DashboardView, self).get_context_data(**kwargs)
-        context['favorite_notes_list'] = User.objects.all()[0].favorites.all()
+        context['favorite_notes_list'] = Profile.objects.all()[0].favorites.all()
         return context
 
 class NoteDetailView(generic.DetailView):
@@ -76,7 +80,7 @@ class CommentCreateView(generic.edit.CreateView):
                 cur_comm.author = request.user.profile
                 cur_comm.author.post_history.add(cur_comm)
                 #ASSOCIATE COMMENT AND NOTESET WITH EACH OTHER
-                form.save():
+                form.save()
                 return redirect("")
             else:
                 form = CommentForm()
