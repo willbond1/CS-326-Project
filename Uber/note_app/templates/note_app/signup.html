@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+{% block content %}
+
+<div class="row">
+    <div class="col"><h1>Create Account</h1></div>
+</div>
+
+<form method="post">
+    {% csrf_token %}
+    {{ user_form.as_p }}
+    {{ profile_form.as_p }}
+    <button type="submit">Complete</button>
+</form>
+
+{% endblock %}
