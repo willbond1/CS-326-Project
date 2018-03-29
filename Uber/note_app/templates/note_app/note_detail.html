@@ -45,7 +45,9 @@
     <div class="card note-card d-flex">
 
         <div class="card-body align-items-center d-flex justify-content-center">
-            A NOTE/PDF PAGE WOULD GO IN THIS BOX
+                <object id="note-pdf" height="900" width="900" type="application/pdf" data="{{ note.note_file.url }}">
+                    <p>PDF failed to load</p>
+                </object>
         </div>
 
     </div>
@@ -63,7 +65,7 @@
 
 
 {% load static %}
-<script src="{% static 'note_app/js/note.js' %}"></script>
+<script src="{% static 'note_app/js/note_detail.js' %}"></script>
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'note_app/css/note.css' %}">
 {% endblock %}
