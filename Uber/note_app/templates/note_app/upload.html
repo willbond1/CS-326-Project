@@ -5,7 +5,7 @@
 	<div class="col"><h1>Upload Note Set</h1></div>
 </div>
 
-<form enctype="multipart/form-data" class="needs-validation bg-dark" action="/upload_notes/" method="post" novalidate>
+<form enctype="multipart/form-data" method="post" novalidate>
     {% csrf_token %}
     {{ form.as_p }}
     <!-- <div class="form-row">

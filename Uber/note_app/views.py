@@ -7,7 +7,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 
-from .forms import NoteForm, UserForm, CommentForm, Profile
+from .forms import NoteForm, UserForm, ProfileForm
 
 # Create your views here.
 # def index(request):
@@ -45,17 +45,17 @@ class NoteCreateView(generic.edit.CreateView):
             if form.is_valid():
                 cur_note = form.save(commit=False)
                 cur_note.author = request.user.profile
-                cur_note.author.uploaded.add(cur_note)
                 cur_note.save()
-                return HttpResponseRedirect("")
-            else:
-                form = NoteForm()
+                messages.success(request, _("Noteset successfully uploaded!"))
+                return redirect("note-upload")
+        else:
+            form = NoteForm()
     
-        return render(request, "templates/note_app/upload.html", {"form": form})
+        return render(request, "note_app/upload.html", {
+            "form": form
+        })
 
 class ProfileCreateView(generic.edit.CreateView):
-    @login_required
-    @transaction.atomic
     def create_profile(request):
         if request.method == 'POST':
             user_form = UserForm(request.POST, instance=request.user)
@@ -63,14 +63,14 @@ class ProfileCreateView(generic.edit.CreateView):
             if user_form.is_valid() and profile_form.is_valid():
                 user_form.save()
                 profile_form.save()
-                messages.success(request, _('Your profile was successfully updated!'))
-                return redirect('settings:profile')
+                messages.success(request, _('Your profile was successfully created!'))
+                return redirect('')
             else:
                 messages.error(request, _('Please correct the error below.'))
         else:
             user_form = UserForm(instance=request.user)
             profile_form = ProfileForm(instance=request.user.profile)
-        return render(request, 'templates/note_app/signup.html', {
+        return render(request, 'note_app/signup.html', {
             'user_form': user_form,
             'profile_form': profile_form
         })

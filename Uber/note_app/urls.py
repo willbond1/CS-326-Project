@@ -7,5 +7,7 @@ urlpatterns = [
     path('',views.DashboardView.as_view(), name='dashboard-view'),
     path('note/<int:pk>', views.NoteDetailView.as_view(), name='note-view'),
     path('uploaded/', views.UpView.as_view(),name='upload-view')
+    path("upload/", views.NoteCreateView.upload_notes, name="note-upload"),
+    path("signup/", views.ProfileCreateView.create_profile, name="profile-signup"),
 ]
 
