@@ -23,7 +23,7 @@
                 <a href="{% url 'dashboard-view' %}" class="btn btn-dark">Home</a>
                 <a class="navbar-brand" tabindex="0" role="button" href="#" data-container="body" data-trigger="focus" title="{{ request.user.username }}" data-toggle="popover" data-placement="bottom" data-content='
                 <div class="list-group list-group-flush">
-                    <a href="#" class="list-group-item list-group-item-action">My Profile</a>
+                    <a href="{% url 'profile-view' %}" class="list-group-item list-group-item-action">My Profile</a>
                     <a href="{% url 'upload-view' %}" class="list-group-item list-group-item-action">My Uploads</a>
                     <a href="#" class="list-group-item list-group-item-action">Followers</a>
                     <a href="#" class="list-group-item list-group-item-action">Settings</a>
