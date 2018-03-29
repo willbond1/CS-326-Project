@@ -6,7 +6,7 @@ from django.dispatch import receiver
 # Create your models here.
 class Profile(models.Model):
     profile_id = models.AutoField(primary_key = True)
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
     bio = models.TextField(max_length=500, blank=True)
     favorites = models.ManyToManyField('note_app.Note', related_name="favorites", blank=True)
     uploaded = models.ManyToManyField('note_app.Note', related_name="uploaded", blank=True)

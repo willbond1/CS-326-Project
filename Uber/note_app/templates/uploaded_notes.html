@@ -1,0 +1,49 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<!-- <h1 class="card-section-header" align="left">My Notes <img src="assets/icons/ic_chevron_right.svg" width="30" height="30"></h1>
+    <div class="row" id="my-notes">
+        <div class="col-sm-3 col-xs-2 my-note-card">
+            <div class="card">
+                <img class="card-img-top img-responseive" src="assets/pdf_placeholder.png" alt="Note">
+                <div class="card-body">
+                    <h4 class="card-title">Kruskal's Algorithm</h4>
+                    <p class="card-text">A minimum-spanning-tree algorithm which finds an edge of the least possible weight that connects any two trees in the fores.</p>
+                    <a href="#" class="btn btn-dark">Open</a>
+                </div>
+            </div>
+        </div>
+    </div> -->
+            
+<h1 class="card-section-header" align="left">
+    Recently Uploaded Notes
+    {% load static %}
+    <img src="{% static 'note_app/assets/icons/ic_chevron_right.svg' %}" width="30" height="30">
+</h1>
+
+
+<div class="row" id="recent-uploaded-notes">
+    {% for note in recent_uploaded_notes_list %}
+    <div class="col-sm-3 col-xs-2 recent-note-card">
+        <div class="card">
+            {% load static %}
+            <img class="card-img-top img-responseive" src="{% static 'note_app/assets/pdf_placeholder.png' %}" alt="Note">
+            <div class="card-body">
+                <h4 class="card-title">{{ note.title }}</h4>
+                <p class="card-text">{{ note.author }}, {{ note.course }}</p>
+                <a href="{% url 'note-view' pk=note.note_id %}" class="btn btn-dark card-link">Open</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+
+{% load static %}
+<script src="{% static 'note_app/js/dashboard.js' %}"></script>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'note_app/css/dashboard.css' %}">
+{% endblock %}

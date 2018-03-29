@@ -5,6 +5,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('',views.DashboardView.as_view(), name='dashboard-view'),
-    path('note/<int:pk>', views.NoteDetailView.as_view(), name='note-view')
+    path('note/<int:pk>', views.NoteDetailView.as_view(), name='note-view'),
+    path('uploaded/', views.UpView.as_view(),name='upload-view')
 ]
 

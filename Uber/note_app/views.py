@@ -33,6 +33,11 @@ class DashboardView(generic.ListView):
 class NoteDetailView(generic.DetailView):
     model = Note
 
+class UpView(generic.ListView):
+   template_name = 'uploaded_notes.html'
+   context_object_name = 'recent_uploaded_notes_list'
+   queryset = Profile.objects.all()[0].uploaded.all()
+
 class NoteCreateView(generic.edit.CreateView):
     def upload_notes(request):
         if request.method == "POST":
