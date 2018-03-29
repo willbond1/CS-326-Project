@@ -10,7 +10,7 @@ class Profile(models.Model):
     bio = models.TextField(max_length=500, blank=True)
     favorites = models.ManyToManyField('note_app.Note', related_name="favorites", blank=True)
     uploaded = models.ManyToManyField('note_app.Note', related_name="uploaded", blank=True)
-    profile_pic = models.ImageField(upload_to="model_files/profiles/")
+    profile_pic = models.ImageField(upload_to="../media/profiles/")
     post_history = models.ManyToManyField("note_app.Comment", related_name="post_history", blank=True)
     karma = models.SmallIntegerField(default=0)
 
@@ -55,7 +55,7 @@ class Course(models.Model):
 
 class Note(models.Model):
     note_id = models.AutoField(primary_key = True)
-    note_file = models.FileField(upload_to="../media/notes")
+    note_file = models.FileField(upload_to="../media/notes/")
     thumbnail = models.ImageField(upload_to="../media/thumbnails/", blank=True)
     author = models.ForeignKey(Profile, on_delete = models.CASCADE)
     school = models.ForeignKey(School, on_delete = models.CASCADE)
