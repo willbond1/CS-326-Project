@@ -5,7 +5,7 @@
 <h1 class="card-section-header" align="center">
     YOUR PROFILE
     <div class = "row", id = "profile-pic">
-    <img src="{{request.user.profile.profile_pic}}" width="30" height="50">
+    <img src="{{request.user.profile.profile_pic.url}}" width="300" height="400">
 </div>
 </h1>
 
@@ -25,12 +25,12 @@
 
 
 <div class="col" id="course-schedule" align = "right">
-    {%for course in course_schedule%}
+    <!-- {%for course in course_schedule%}
      <div class="col-sm-3 col-xs-2 course-schedule">
          <a href="#" class="list-group-item list-group-item-action">{{course.title}}</a>
         </div>
     
-   {%endfor%} 
+   {%endfor%}  -->
 </div>
 
 
@@ -43,11 +43,12 @@
 
 
 <div class="row" id="favorite-authors" align = "left">
-    {% if favorite_authors %}
-    Number of athletes: {{ favorite_authors|length }}
-{% else %}
-    No athletes.
-{% endif %}
+    <!-- {% for author in favorite_authors %}
+     <div class="col-sm-3 col-xs-2 fav-authors">
+         <a href="#" class="list-group-item list-group-item-action">{{author.user}}</a>
+        </div>
+
+{% endfor %} -->
 </div>
 
 

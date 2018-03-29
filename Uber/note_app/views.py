@@ -27,8 +27,7 @@ class DashboardView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super(DashboardView, self).get_context_data(**kwargs)
-        context['favorite_notes_list'] = Note.objects.all()
-#Profile.objects.all()[0].favorites.all()
+        context['favorite_notes_list'] = Profile.objects.all()[0].favorites.all()
         return context
 
 class ProfileView(generic.ListView):
@@ -38,12 +37,9 @@ class ProfileView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super(ProfileView, self).get_context_data(**kwargs)
-        context['favorite_authors'] = Note.objects.all()
-#Profile.objects.all()[0].fav_authors.all()
-        context['favorite_course_notes'] = Note.objects.all()
-#Profile.objects.all()[0].favorites.all()
-        context['course_schedule'] = Note.objects.all()
-#Profile.objects.all()[0].course_schedule.all()
+        #context['favorite_authors'] = Profile.objects.all()[0].fav_authors.all()
+        context['favorite_course_notes'] = Profile.objects.all()[0].favorites.all()
+        #context['course_schedule'] = Profile.objects.all()[0].course_schedule.all()
         return context
 
 class NoteDetailView(generic.DetailView):
@@ -52,8 +48,7 @@ class NoteDetailView(generic.DetailView):
 class UpView(generic.ListView):
    template_name = 'uploaded_notes.html'
    context_object_name = 'recent_uploaded_notes_list'
-   queryset = Note.objects.all()
-#Profile.objects.all()[0].uploaded.all()
+   queryset = Profile.objects.all()[0].uploaded.all()
 
 class NoteCreateView(generic.edit.CreateView):
     def upload_notes(request):
@@ -108,3 +103,8 @@ class CommentCreateView(generic.edit.CreateView):
                 form = CommentForm()
 
         return render(request, "", {"form": form})
+
+class SearchView(generic.ListView):
+    template_name = 'search.html'
+    context_object_name = 'note_results'
+    queryset = Note.objects.all()

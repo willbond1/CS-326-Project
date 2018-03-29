@@ -13,8 +13,8 @@ class Profile(models.Model):
     profile_pic = models.ImageField(upload_to="../media/profiles/")
     post_history = models.ManyToManyField("note_app.Comment", related_name="post_history", blank=True)
     karma = models.SmallIntegerField(default=0)
-    favorite_authors = models.ManyToManyField('note_app.Profile', related_name = "fav_authors", blank=True)
-    course_schedule = models.ManyToManyField('note_app.Course', related_name = "course_schedule", blank=True)
+    #favorite_authors = models.ManyToManyField('note_app.Profile', related_name = "fav_authors", blank=True)
+    #course_schedule = models.ManyToManyField('note_app.Course', related_name = "course_schedule", blank=True)
 
     class Meta:
         ordering = ['profile_id']
