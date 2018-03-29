@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import User, School, Professor, Course, Note
+from .models import Profile, School, Professor, Course, Note
 
 # Register your models here.
-class UserInline(admin.TabularInline):
-    model = User
+class ProfileInline(admin.TabularInline):
+    model = Profile
     extra = 1
 
 class NoteInline(admin.TabularInline):
@@ -22,10 +22,17 @@ class ProfessorInline(admin.TabularInline):
     model = Professor
     extra = 1
 
-@admin.register(User)
-class UserAdmin(admin.ModelAdmin):
-    list_display = ('user_name','user_id','last_name','first_name')
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('user_username','profile_id','user_last_name','user_first_name')
     inlines = [NoteInline]
+
+    def user_username(self,x):
+        return x.user.username
+    def user_last_name(self,x):
+        return x.user.last_name
+    def user_first_name(self,x):
+        return x.user.first_name
     pass
 
 @admin.register(Note)

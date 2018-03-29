@@ -17,22 +17,25 @@
     {% block navbar %}
     <nav class="navbar navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" tabindex="0" role="button" href="#" data-container="body" data-trigger="focus" title="jay-jay" data-toggle="popover" data-placement="bottom" data-content='
+            <div class="d-flex align-items-center h100">
+                <a href="{% url 'dashboard-view' %}" class="btn btn-dark">Home</a>
+                <a class="navbar-brand" tabindex="0" role="button" href="#" data-container="body" data-trigger="focus" title="jay-jay" data-toggle="popover" data-placement="bottom" data-content='
                 <div class="list-group list-group-flush">
                     <a href="#" class="list-group-item list-group-item-action">My Profile</a>
                     <a href="#" class="list-group-item list-group-item-action">Followers</a>
                     <a href="#" class="list-group-item list-group-item-action">Settings</a>
                 </div>
                 '> 
+            
                 {% load static %}
                 <img src="{% static 'note_app/assets/icons/ic_profile.svg' %}" width="30" height="30" class="d-inline-block align-top" alt=""> Jaylen Brown
             </a>
+            </div>
+            
 
             <div class="btn-group" role="group" aria-label="Navigation" style="text-align:center;">
-                <button type="button" class="btn btn-dark">Upload</button>
-                <button type="button" class="btn btn-dark">Recent</button>
-                <button type="button" class="btn btn-dark">Top</button>
-                <button type="button" class="btn btn-dark">Favorite</button>
+                <a href="{% url 'note-upload' %}" class="btn btn-dark">Upload</a>
+                <a href="{% url 'profile-signup' %}" class="btn btn-dark">Sign Up</a>
                 <button type="button" class="btn btn-dark">
                         {% load static %}
                         <img src="{% static 'note_app/assets/icons/ic_search.svg' %}" width="30" height="30">

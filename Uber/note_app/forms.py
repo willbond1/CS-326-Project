@@ -1,5 +1,6 @@
 from django import forms
-from .models import Profile, Note, Comment
+from django.contrib.auth.models import User
+from .models import Profile, Note
 
 class NoteForm(forms.ModelForm):
     class Meta:
@@ -9,14 +10,9 @@ class NoteForm(forms.ModelForm):
 class UserForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'email', "password")
+        fields = ["username", 'first_name', 'last_name', 'email', "password"]
 
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ("bio", "profile_pic")
-
-class CommentForm(forms.ModelForm):
-    class Meta:
-        model = Comment
-        fields = ["body"]
+        fields = ["bio", "profile_pic"]
