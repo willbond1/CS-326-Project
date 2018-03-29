@@ -14,7 +14,7 @@
     <div class="col-sm-3 col-xs-2 recent-note-card">
         <div class="card">
             {% load static %}
-            <img class="card-img-top img-responseive" src="{% static 'note_app/assets/pdf_placeholder.png' %}" alt="Note">
+            <img class="card-img-top img-responseive" src="{{note.thumbnail}}" alt="Note">
             <div class="card-body">
                 <h4 class="card-title">{{ note.title }}</h4>
                 <p class="card-text">{{ note.author }}, {{ note.course }}</p>

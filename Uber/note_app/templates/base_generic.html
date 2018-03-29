@@ -19,16 +19,17 @@
         <div class="container">
             <div class="d-flex align-items-center h100">
                 <a href="{% url 'dashboard-view' %}" class="btn btn-dark">Home</a>
-                <a class="navbar-brand" tabindex="0" role="button" href="#" data-container="body" data-trigger="focus" title="jay-jay" data-toggle="popover" data-placement="bottom" data-content='
+                <a class="navbar-brand" tabindex="0" role="button" href="#" data-container="body" data-trigger="focus" title="{{ request.user.username }}" data-toggle="popover" data-placement="bottom" data-content='
                 <div class="list-group list-group-flush">
                     <a href="#" class="list-group-item list-group-item-action">My Profile</a>
+                    <a href="{% url 'upload-view' %}" class="list-group-item list-group-item-action">My Uploads</a>
                     <a href="#" class="list-group-item list-group-item-action">Followers</a>
                     <a href="#" class="list-group-item list-group-item-action">Settings</a>
                 </div>
                 '> 
             
                 {% load static %}
-                <img src="{% static 'note_app/assets/icons/ic_profile.svg' %}" width="30" height="30" class="d-inline-block align-top" alt=""> Jaylen Brown
+                <img src="{% static 'note_app/assets/icons/ic_profile.svg' %}" width="30" height="30" class="d-inline-block align-top" alt=""> {{ request.user.first_name }} {{ request.user.last_name }}
             </a>
             </div>
             
