@@ -18,8 +18,19 @@ from .forms import NoteForm, UserForm, CommentForm, Profile
 #         request,
 #         'index.html',
 #         context={'num_users':num_users, 'num_notes':num_notes}
-#     )
+#     
 
+class ProfileView(generic.ListView):
+    template_name = 'profile.html'
+    context_object_name = 'course_list'
+    queryset = Profile.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super(ProfileView, self).get_context_data(**kwargs)
+        context['favorite_authors'] = Profile.objects.all()[0].fav_authors.all()
+        context['favorite_course_notes'] = Profile.objects.all()[0].favorites.all()
+        context['course_schedule'] = Profile.objects.all()[0].course_schedule.all()
+        return context
 class DashboardView(generic.ListView):
     template_name = 'dashboard.html'
     context_object_name = 'recent_notes_list'
@@ -32,11 +43,6 @@ class DashboardView(generic.ListView):
 
 class NoteDetailView(generic.DetailView):
     model = Note
-
-class UpView(generic.ListView):
-   template_name = 'uploaded_notes.html'
-   context_object_name = 'recent_uploaded_notes_list'
-   queryset = Profile.objects.all()[0].uploaded.all()
 
 class NoteCreateView(generic.edit.CreateView):
     def upload_notes(request):

@@ -6,13 +6,15 @@ from django.dispatch import receiver
 # Create your models here.
 class Profile(models.Model):
     profile_id = models.AutoField(primary_key = True)
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name = "profile")
     bio = models.TextField(max_length=500, blank=True)
     favorites = models.ManyToManyField('note_app.Note', related_name="favorites", blank=True)
     uploaded = models.ManyToManyField('note_app.Note', related_name="uploaded", blank=True)
-    profile_pic = models.ImageField(upload_to="../media/profiles/")
+    profile_pic = models.ImageField(upload_to="../static/note_app/assets/profiles/")
     post_history = models.ManyToManyField("note_app.Comment", related_name="post_history", blank=True)
     karma = models.SmallIntegerField(default=0)
+    #favorite_authors = models.ManyToManyField('note_app.Profile', related_name = "fav_authors", blank=True)
+    #course_schedule = models.ManyToManyField('note_app.Course', related_name = "course_schedule", blank=True)
 
     class Meta:
         ordering = ['profile_id']
@@ -55,8 +57,8 @@ class Course(models.Model):
 
 class Note(models.Model):
     note_id = models.AutoField(primary_key = True)
-    note_file = models.FileField(upload_to="../media/notes/")
-    thumbnail = models.ImageField(upload_to="../media/thumbnails/", blank=True)
+    note_file = models.FileField(upload_to="../static/note_app/assets/notes/")
+    thumbnail = models.ImageField(upload_to="../static/note_app/assets/thumbnails/", blank=True)
     author = models.ForeignKey(Profile, on_delete = models.CASCADE)
     school = models.ForeignKey(School, on_delete = models.CASCADE)
     title = models.CharField(max_length = 180, verbose_name = 'Title') # Can be changed to a date or whatever
