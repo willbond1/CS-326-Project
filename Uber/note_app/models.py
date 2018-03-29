@@ -64,6 +64,7 @@ class Note(models.Model):
     semester = models.CharField(max_length = 40, verbose_name = 'Semester')
     # note_file = models.URLField(verbose_name='Note URL')
     date_uploaded = models.DateTimeField(auto_now_add=True)
+    comments = models.ManyToManyField("note_app.Comment", related_name="comments", blank=True)
     karma = models.SmallIntegerField(default=0)
     
     class Meta:
@@ -71,3 +72,17 @@ class Note(models.Model):
 
     def __str__(self):
         return '{0}, {1}'.format(self.title, self.author)
+
+class Comment(models.Model):
+    comment_id = models.AutoField(primary_key=True)
+    author = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    body = models.TextField(max_length=500)
+    karma = models.SmallIntegerField(default=0)
+    date_uploaded = models.DateTimeField(auto_now_add=True)
+    posted_on = models.ForeignKey(Note, on_delete=models.CASCADE)
+
+    class Meta:
+        ordering=["date_uploaded"]
+
+    def __str__(self):
+        return "Posted by {0} at {1} with a score of {2}: {3}".format(self.title, self.date_uploaded, self.karma, self.body)
