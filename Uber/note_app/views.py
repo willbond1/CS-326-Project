@@ -30,6 +30,18 @@ class DashboardView(generic.ListView):
         context['favorite_notes_list'] = Profile.objects.all()[0].favorites.all()
         return context
 
+class ProfileView(generic.ListView):
+    template_name = 'profile.html'
+    context_object_name = 'course_list'
+    queryset = Profile.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super(ProfileView, self).get_context_data(**kwargs)
+        context['favorite_authors'] = Profile.objects.all()[0].fav_authors.all()
+        context['favorite_course_notes'] = Profile.objects.all()[0].favorites.all()
+        context['course_schedule'] = Profile.objects.all()[0].course_schedule.all()
+        return context
+
 class NoteDetailView(generic.DetailView):
     model = Note
 

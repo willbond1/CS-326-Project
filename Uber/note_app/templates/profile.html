@@ -1,0 +1,84 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+            
+<h1 class="card-section-header" align="center">
+    YOUR PROFILE
+    <div class = "row", id = "profile-pic">
+    <img src="{{request.user.profile.profile_pic}}" width="30" height="50">
+</div>
+</h1>
+
+ <div class = "col-sm">
+    <h5 class = "card-section-header" id= "Avg" align = "right"> Overall Karma: {{request.user.profile.karma}} </h5>
+ 
+    </div>
+
+<div class="col" id="about-me" align = "left">
+     <h2 class ="card-section-header" align = "center" id = "Me">About Me</h2>
+     <p class = "text-center" id = "MeTxt"> {{request.user.profile.bio}}</p>
+ </div>
+
+
+  <h4 class="card-section-header" align="right">Your Course Schedule {% load static %}<img src="{% static 'note_app/assets/icons/ic_chevron_right.svg' %}" width="30" height="30"></h4>
+
+
+
+<div class="col" id="course-schedule" align = "right">
+    {%for course in course_schedule%}
+     <div class="col-sm-3 col-xs-2 course-schedule">
+         <a href="#" class="list-group-item list-group-item-action">{{course.title}}</a>
+        </div>
+    
+   {%endfor%} 
+</div>
+
+
+
+
+
+
+  <h4 class="card-section-header" align="left">Favorited Authors {% load static %}<img src="{% static 'note_app/assets/icons/ic_chevron_right.svg' %}" width="30" height="30"></h4>
+
+
+
+<div class="row" id="favorite-authors" align = "left">
+    {% if favorite_authors %}
+    Number of athletes: {{ favorite_authors|length }}
+{% else %}
+    No athletes.
+{% endif %}
+</div>
+
+
+
+
+<h4 class="card-section-header" align="left">Favorited Notes {% load static %}<img src="{% static 'note_app/assets/icons/ic_chevron_right.svg' %}" width="30" height="30"></h4>
+
+
+
+<div class="row" id="favorite-notes">
+    {% for note in favorite_course_notes %}
+    <div class="col-sm-3 col-xs-2 favorite-note-card">
+        <div class="card">
+            {% load static %}
+            <img class="card-img-top img-responseive" src="{% static 'note_app/assets/pdf_placeholder.png' %}" alt="Note">
+            <div class="card-body">
+                <h4 class="card-title">{{ note.title }}</h4>
+                <p class="card-text">{{ note.author }}, {{ note.course }}</p>
+                <a href="{% url 'note-view' pk=note.note_id %}" class="btn btn-dark card-link">Open</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+
+
+{% load static %}
+<script src="{% static 'note_app/js/dashboard.js' %}"></script>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'note_app/css/dashboard.css' %}">
+{% endblock %}
