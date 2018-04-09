@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.views import generic
 from .models import Note
 from django.contrib.auth.models import User
+from django.contrib import messages
+from django.contrib.auth import authenticate, login
 
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
@@ -70,18 +72,25 @@ class NoteCreateView(generic.edit.CreateView):
 class ProfileCreateView(generic.edit.CreateView):
     def create_profile(request):
         if request.method == 'POST':
-            user_form = UserForm(request.POST, instance=request.user)
-            profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+            user_form = UserForm(request.POST)
+            profile_form = ProfileForm(request.POST, request.FILES)
             if user_form.is_valid() and profile_form.is_valid():
-                user_form.save()
-                profile_form.save()
-                messages.success(request, _('Your profile was successfully created!'))
-                return redirect('')
+                user = user_form.save()
+                profile = profile_form.save(commit=False)
+                username = user_form.cleaned_data.get('username')
+                raw_pass = user_form.cleaned_data.get('password')
+                user = authenticate(username=username, password=raw_pass)
+                login(request, user)
+                profile.user = request.user
+                profile.save()
+
+                messages.success(request, ('Your profile was successfully created!'))
+                return redirect('dashboard-view')
             else:
-                messages.error(request, _('Please correct the error below.'))
+                messages.error(request, ('Please correct the error below.'))
         else:
-            user_form = UserForm(instance=request.user)
-            profile_form = ProfileForm(instance=request.user.profile)
+            user_form = UserForm()
+            profile_form = ProfileForm()
         return render(request, 'note_app/signup.html', {
             'user_form': user_form,
             'profile_form': profile_form
