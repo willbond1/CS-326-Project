@@ -40,7 +40,7 @@
 
             <div class="btn-group" role="group" aria-label="Navigation" style="text-align:center;">
                 <a href="{% url 'note-upload' %}" class="btn btn-dark">Upload</a>
-                {% if user.is_anonymous %}
+                {% if not user.is_authenticated %}
                     <a href="{% url 'profile-signup' %}" class="btn btn-dark">Sign Up</a>
                 {% endif %}
                 <a href="{% url 'search-view' %}" class="btn btn-dark">

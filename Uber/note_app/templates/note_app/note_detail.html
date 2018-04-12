@@ -42,30 +42,17 @@
 
     </div>
 
-    <div class="card note-card d-flex">
+    <div class="card-body align-items-center d-flex justify-content-center">
+        <object id="note-pdf" height="900" width="900" type="application/pdf" data="{{ note.note_file.url }}">
+            <p>PDF failed to load</p>
+        </object>
+</div>
 
-        <div class="card-body align-items-center d-flex justify-content-center">
-                <object id="note-pdf" height="900" width="900" type="application/pdf" data="{{ note.note_file.url }}">
-                    <p>PDF failed to load</p>
-                </object>
-        </div>
-
-    </div>
-
-    <div class="btn-group float-right note-pages" role="group" aria-label="Note Pages">
-        <button type="button" class="btn btn-secondary active">1</button>
-        <button type="button" class="btn btn-secondary">2</button>
-        <button type="button" class="btn btn-secondary">3</button>
-        <button type="button" class="btn btn-secondary">4</button>
-        <button type="button" class="btn btn-secondary">5</button>
-        <button type="button" class="btn btn-secondary">6</button>
-        <button type="button" class="btn btn-secondary">7</button>
-    </div>
 </div>
 
 
 {% load static %}
 <script src="{% static 'note_app/js/note_detail.js' %}"></script>
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'note_app/css/note.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'note_app/css/note_detail.css' %}">
 {% endblock %}

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import generic
 from .models import Note
 from django.contrib.auth.models import User
@@ -29,19 +29,20 @@ class DashboardView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super(DashboardView, self).get_context_data(**kwargs)
-        context['favorite_notes_list'] = Profile.objects.all()[0].favorites.all()
+        if self.request.user.is_authenticated:
+            context['favorite_notes_list'] = Profile.objects.filter(user=self.request.user)[0].favorites.all()
         return context
 
 class ProfileView(generic.ListView):
     template_name = 'profile.html'
     context_object_name = 'course_list'
-    queryset = Profile.objects.all()
 
     def get_context_data(self, **kwargs):
         context = super(ProfileView, self).get_context_data(**kwargs)
-        #context['favorite_authors'] = Profile.objects.all()[0].fav_authors.all()
-        context['favorite_course_notes'] = Profile.objects.all()[0].favorites.all()
-        #context['course_schedule'] = Profile.objects.all()[0].course_schedule.all()
+        if self.request.user.is_authenticated:
+            #context['favorite_authors'] = Profile.objects.all()[0].fav_authors.all()
+            context['favorite_course_notes'] = Profile.objects.filter(user=self.request.user)[0].favorites.all()
+            #context['course_schedule'] = Profile.objects.all()[0].course_schedule.all()
         return context
 
 class NoteDetailView(generic.DetailView):
@@ -50,7 +51,9 @@ class NoteDetailView(generic.DetailView):
 class UpView(generic.ListView):
    template_name = 'uploaded_notes.html'
    context_object_name = 'recent_uploaded_notes_list'
-   queryset = Profile.objects.all()[0].uploaded.all()
+   
+   def get_queryset(self):
+       return Profile.objects.filter(user=self.request.user)[0].uploaded.all()
 
 class NoteCreateView(generic.edit.CreateView):
     def upload_notes(request):
@@ -60,8 +63,8 @@ class NoteCreateView(generic.edit.CreateView):
                 cur_note = form.save(commit=False)
                 cur_note.author = request.user.profile
                 cur_note.save()
-                messages.success(request, _("Noteset successfully uploaded!"))
-                return redirect("note-upload")
+                messages.success(request, ("Noteset successfully uploaded!"))
+                return redirect('note-view',pk=cur_note.note_id)
         else:
             form = NoteForm()
     
@@ -107,7 +110,7 @@ class CommentCreateView(generic.edit.CreateView):
                 cur_comm.author.post_history.add(cur_comm)
                 #ASSOCIATE COMMENT AND NOTESET WITH EACH OTHER
                 form.save()
-                return redirect("")
+                return redirect('')
             else:
                 form = CommentForm()
 
