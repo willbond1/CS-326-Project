@@ -36,6 +36,7 @@ class DashboardView(generic.ListView):
 class ProfileView(generic.ListView):
     template_name = 'profile.html'
     context_object_name = 'course_list'
+    queryset = Note.objects.all()
 
     def get_context_data(self, **kwargs):
         context = super(ProfileView, self).get_context_data(**kwargs)
@@ -80,15 +81,12 @@ class ProfileCreateView(generic.edit.CreateView):
             if user_form.is_valid() and profile_form.is_valid():
                 user = user_form.save()
                 profile = profile_form.save(commit=False)
-                username = user_form.cleaned_data.get('username')
-                raw_pass = user_form.cleaned_data.get('password')
-                user = authenticate(username=username, password=raw_pass)
-                login(request, user)
-                profile.user = request.user
+                profile.user = user
+                profile.profile_pic = profile_form.cleaned_data['profile_pic']
                 profile.save()
 
                 messages.success(request, ('Your profile was successfully created!'))
-                return redirect('dashboard-view')
+                return redirect('#LOGIN PAGE')
             else:
                 messages.error(request, ('Please correct the error below.'))
         else:
