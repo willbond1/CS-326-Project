@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
 from .models import Note
 from django.contrib.auth.models import User
@@ -77,17 +77,21 @@ class ProfileCreateView(generic.edit.CreateView):
     def create_profile(request):
         if request.method == 'POST':
             user_form = UserForm(request.POST)
-            profile_form = ProfileForm(request.POST, request.FILES)
+            profile_form = ProfileForm(request.POST,request.FILES)
             if user_form.is_valid() and profile_form.is_valid():
                 user = user_form.save()
+                user.save()
+
                 profile = profile_form.save(commit=False)
                 profile.user = user
-                profile.profile_pic = profile_form.cleaned_data['profile_pic']
+                if 'profile_pic' in request.FILES:
+                    profile.profile_pic = request.FILES['profile_pic']
                 profile.save()
-
+                print('Success!')
                 messages.success(request, ('Your profile was successfully created!'))
-                return redirect('#LOGIN PAGE')
+                return redirect('login')
             else:
+                print('Correct Issues!')
                 messages.error(request, ('Please correct the error below.'))
         else:
             user_form = UserForm()
