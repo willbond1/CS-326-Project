@@ -1,0 +1,58 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+            
+<h1 class="card-section-header" align="left">
+    Recent
+    {% load static %}
+    <img src="{% static 'note_app/assets/icons/ic_chevron_right.svg' %}" width="30" height="30">
+</h1>
+
+
+<div class="row" id="recent-notes">
+    {% for note in recent_notes_list %}
+    <div class="col-sm-3 col-xs-2 recent-note-card">
+        <div class="card">
+            {% load static %}
+            <img class="card-img-top img-responseive" src="{{ MEDIA_URL }}/{{ note.thumbnail }}" alt="Note">
+            <div class="card-body">
+                <h4 class="card-title">{{ note.title }}</h4>
+                <p class="card-text">{{ note.author }}, {{ note.course }}</p>
+                <a href="{% url 'note-view' pk=note.note_id %}" class="btn btn-dark card-link">Open</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+<h1 class="card-section-header" align="left">Favorites {% load static %}<img src="{% static 'note_app/assets/icons/ic_chevron_right.svg' %}" width="30" height="30"></h1>
+
+
+
+<div class="row" id="favorite-notes">
+    {% for note in favorite_notes_list %}
+    <div class="col-sm-3 col-xs-2 favorite-note-card">
+        <div class="card">
+            {% load static %}
+            <img class="card-img-top img-responseive" src="{{ MEDIA_URL }}/{{ note.thumbnail }}" alt="Note">
+            <div class="card-body">
+                <h4 class="card-title">{{ note.title }}</h4>
+                <p class="card-text">{{ note.author }}, {{ note.course }}</p>
+                <a href="{% url 'note-view' pk=note.note_id %}" class="btn btn-dark card-link">Open</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+
+
+{% load static %}
+<script src="{% static 'note_app/js/dashboard.js' %}"></script>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'note_app/css/dashboard.css' %}">
+{% endblock %}

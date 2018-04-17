@@ -1,0 +1,44 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+            
+<h1 class="card-section-header" align="left">
+    Search
+    {% load static %}
+    <img src="{% static 'note_app/assets/icons/ic_chevron_right.svg' %}" width="30" height="30">
+    <div class="topnav">
+    	<form action="{% url 'search-results-view' %}" method="get" accept-charset="utf-8">
+        <input type="text" name = "search" placeholder="Search">
+        <!--<img src="{% static 'note_app/assets/icons/ic_search.svg' %}" width="30" height="30"> -->
+        <button class = "search-button" type="submit" style="background: url({% static 'note_app/assets/icons/ic_search.svg' %})"></button>
+        <p>Advanced search options </p>  
+    	</form>
+     </div>
+</h1>
+
+
+<div class="row" id="recent-notes">
+    {% for note in note_results %}
+    <div class="col-sm-3 col-xs-2 search-notes">
+        <div class="card">
+            {% load static %}
+            <img class="card-img-top img-responseive" src="{{ MEDIA_URL }}/{{ note.thumbnail }}" alt="Note">
+            <div class="card-body">
+                <h4 class="card-title">{{ note.title }}</h4>
+                <p class="card-text">Course: {{ note.course }} </br> School: {{ note.school }}</p>
+                <a href="{% url 'note-view' pk=note.note_id %}" class="btn btn-dark card-link">Open</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<h1 class="card-section-header" align="left">
+ Load More Results
+    {% load static %}
+    <img src="{% static 'note_app/assets/icons/ic_chevron_right.svg' %}" width="30" height="30">
+</h1 class="more-results">
+{% load static %}
+<script src="{% static 'note_app/js/search.js' %}"></script>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'note_app/css/search.css' %}">
+{% endblock %}
