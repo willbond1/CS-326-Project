@@ -13,8 +13,6 @@ class Profile(models.Model):
     profile_pic = models.ImageField(upload_to="../media/profiles/")
     post_history = models.ManyToManyField("note_app.Comment", related_name="post_history", blank=True)
     karma = models.SmallIntegerField(default=0)
-    #favorite_authors = models.ManyToManyField('note_app.Profile', related_name = "fav_authors", blank=True)
-    #course_schedule = models.ManyToManyField('note_app.Course', related_name = "course_schedule", blank=True)
 
     class Meta:
         ordering = ['profile_id']
@@ -64,7 +62,6 @@ class Note(models.Model):
     title = models.CharField(max_length = 180, verbose_name = 'Title') # Can be changed to a date or whatever
     course = models.ForeignKey(Course, on_delete = models.CASCADE)
     semester = models.CharField(max_length = 40, verbose_name = 'Semester')
-    # note_file = models.URLField(verbose_name='Note URL')
     date_uploaded = models.DateTimeField(auto_now_add=True)
     comments = models.ManyToManyField("note_app.Comment", related_name="comments", blank=True)
     karma = models.SmallIntegerField(default=0)
