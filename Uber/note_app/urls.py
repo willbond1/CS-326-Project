@@ -12,6 +12,7 @@ urlpatterns = [
     path('profile/', views.ProfileView.as_view(), name = 'profile-view'),
     path('search/', views.SearchView.as_view(), name='search-view'),
     path('search/results', views.SearchResultsView.as_view(), name='search-results-view'),
+    path('update/<int:pk>', views.NoteUpdate.as_view(), name='note-update'),
 ]
 
 urlpatterns += [  

@@ -11,6 +11,7 @@ from django.db import transaction
 from .models import Profile
 from .forms import NoteForm, UserForm, ProfileForm
 from .forms import CustomUserCreationForm
+from django.views.generic.edit import CreateView, UpdateView
  
 
 # Create your views here.
@@ -133,3 +134,8 @@ def update_profile(request):
         'user_form': user_form,
         'profile_form': profile_form
     })
+
+class NoteUpdate(UpdateView):
+   model = Note
+   fields = ["note_file", "thumbnail", "title", "school", "course", "semester"]    
+   success_url = '/'

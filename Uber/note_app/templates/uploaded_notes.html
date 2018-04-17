@@ -33,6 +33,7 @@
                 <h4 class="card-title">{{ note.title }}</h4>
                 <p class="card-text">{{ note.author }}, {{ note.course }}</p>
                 <a href="{% url 'note-view' pk=note.note_id %}" class="btn btn-dark card-link">Open</a>
+                <a href="{% url 'note-update' pk=note.note_id %}" class="btn btn-dark card-link">Edit</a>
             </div>
         </div>
     </div>
