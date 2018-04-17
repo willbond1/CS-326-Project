@@ -8,9 +8,9 @@
     <img src="{% static 'note_app/assets/icons/ic_chevron_right.svg' %}" width="30" height="30">
     <div class="topnav">
     	<form action="{% url 'search-results-view' %}" method="get" accept-charset="utf-8">
-        <input type="text" name = "search" placeholder="Search">
+        <input type="text" name="search" placeholder="Search">
         <!--<img src="{% static 'note_app/assets/icons/ic_search.svg' %}" width="30" height="30"> -->
-        <button class = "search-button" type="submit" style="background: url({% static 'note_app/assets/icons/ic_search.svg' %})"></button>
+        <button class="search-button btn btn-dark" type="submit" style="background: url({% static 'note_app/assets/icons/ic_search.svg' %})"></button>
         <p>Advanced search options </p>  
     	</form>
      </div>

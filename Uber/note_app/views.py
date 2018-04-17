@@ -1,15 +1,17 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.views import generic
 from .models import Note
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
-
+from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from .models import Profile
 from .forms import NoteForm, UserForm, ProfileForm
+from .forms import CustomUserCreationForm
+ 
 
 # Create your views here.
 # def index(request):
@@ -27,11 +29,7 @@ class DashboardView(generic.ListView):
     context_object_name = 'recent_notes_list'
     queryset = Note.objects.all()
 
-    def get_context_data(self, **kwargs):
-        context = super(DashboardView, self).get_context_data(**kwargs)
-        if self.request.user.is_authenticated:
-            context['favorite_notes_list'] = Profile.objects.filter(user=self.request.user)[0].favorites.all()
-        return context
+     
 
 class ProfileView(generic.ListView):
     template_name = 'profile.html'
@@ -40,11 +38,7 @@ class ProfileView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super(ProfileView, self).get_context_data(**kwargs)
-        if self.request.user.is_authenticated:
-            #context['favorite_authors'] = Profile.objects.all()[0].fav_authors.all()
-            context['favorite_course_notes'] = Profile.objects.filter(user=self.request.user)[0].favorites.all()
-            #context['course_schedule'] = Profile.objects.all()[0].course_schedule.all()
-        return context
+        
 
 class NoteDetailView(generic.DetailView):
     model = Note
@@ -52,17 +46,16 @@ class NoteDetailView(generic.DetailView):
 class UpView(generic.ListView):
    template_name = 'uploaded_notes.html'
    context_object_name = 'recent_uploaded_notes_list'
-   
-   def get_queryset(self):
-       return Profile.objects.filter(user=self.request.user)[0].uploaded.all()
+   queryset = Note.objects.all()
+
 
 class NoteCreateView(generic.edit.CreateView):
     def upload_notes(request):
         if request.method == "POST":
             form = NoteForm(request.POST, request.FILES)
             if form.is_valid():
+                 
                 cur_note = form.save(commit=False)
-                cur_note.author = request.user.profile
                 cur_note.save()
                 messages.success(request, ("Noteset successfully uploaded!"))
                 return redirect('note-view',pk=cur_note.note_id)
@@ -73,34 +66,20 @@ class NoteCreateView(generic.edit.CreateView):
             "form": form
         })
 
-class ProfileCreateView(generic.edit.CreateView):
-    def create_profile(request):
-        if request.method == 'POST':
-            user_form = UserForm(request.POST)
-            profile_form = ProfileForm(request.POST,request.FILES)
-            if user_form.is_valid() and profile_form.is_valid():
-                user = user_form.save()
-                user.save()
+def register(request):
+    if request.method == 'POST':
+        f = CustomUserCreationForm(request.POST)
+        if f.is_valid():
+            f.save()
+            messages.success(request, 'Account created successfully')
+            return redirect('/')
 
-                profile = profile_form.save(commit=False)
-                profile.user = user
-                if 'profile_pic' in request.FILES:
-                    profile.profile_pic = request.FILES['profile_pic']
-                profile.save()
-                print('Success!')
-                messages.success(request, ('Your profile was successfully created!'))
-                return redirect('login')
-            else:
-                print('Correct Issues!')
-                messages.error(request, ('Please correct the error below.'))
-        else:
-            user_form = UserForm()
-            profile_form = ProfileForm()
-        return render(request, 'note_app/signup.html', {
-            'user_form': user_form,
-            'profile_form': profile_form
+    else:
+        f = CustomUserCreationForm()
+
+    return render(request, 'note_app/register.html',{
+            "form": f
         })
-
 
 class CommentCreateView(generic.edit.CreateView):
     def add_comment(request):
@@ -122,3 +101,35 @@ class SearchView(generic.ListView):
     template_name = 'search.html'
     context_object_name = 'note_results'
     queryset = Note.objects.all()
+
+class SearchResultsView(generic.ListView):
+    template_name = 'search.html'
+    context_object_name = 'note_results'
+
+    def get_queryset(self):
+        query = self.request.GET.get('search')
+        if query:
+            return Note.objects.filter(title__contains=query)
+        else:
+            return []
+    
+@login_required
+@transaction.atomic
+def update_profile(request):
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=request.user)
+        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, _('Your profile was successfully updated!'))
+            return redirect('settings:profile')
+        else:
+            messages.error(request, _('Please correct the error below.'))
+    else:
+        user_form = UserForm(instance=request.user)
+        profile_form = ProfileForm(instance=request.user.profile)
+    return render(request, 'note_app/profile_up.html', {
+        'user_form': user_form,
+        'profile_form': profile_form
+    })

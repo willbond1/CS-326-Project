@@ -5,8 +5,14 @@
 <h1 class="card-section-header" align="center">
     YOUR PROFILE
     <div class = "row", id = "profile-pic">
-    <img src="{{request.user.profile.profile_pic.url}}" width="300" height="400">
-</div>
+    {% if user.profile.profile_pics %}
+        <img src="{{ request.user.profile.profile_pic.url }}" width="300" height="400">
+    {% endif %}
+    {% if not user.profile.profile_pics %}
+        {% load static %}
+        <img src="{% static 'note_app/assets/profile_placeholder.png' %}" width="300" height="400">
+    {% endif %}
+    </div>
 </h1>
 
  <div class = "col-sm">
