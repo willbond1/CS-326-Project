@@ -31,7 +31,7 @@
             <img class="card-img-top img-responseive" src="{{ MEDIA_URL }}/{{ note.thumbnail }}" alt="Note">
             <div class="card-body">
                 <h4 class="card-title">{{ note.title }}</h4>
-                <p class="card-text">{{ note.author }}, {{ note.course }}</p>
+                <p class="card-text">{{ note.course }}</p>
                 <a href="{% url 'note-view' pk=note.note_id %}" class="btn btn-dark card-link">Open</a>
                 <a href="{% url 'note-update' pk=note.note_id %}" class="btn btn-dark card-link">Edit</a>
             </div>

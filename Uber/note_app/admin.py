@@ -8,7 +8,7 @@ class ProfileInline(admin.TabularInline):
 
 class NoteInline(admin.TabularInline):
     model = Note
-    extra = 1
+    
 
 class SchoolInline(admin.TabularInline):
     model = School
@@ -24,8 +24,8 @@ class ProfessorInline(admin.TabularInline):
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('user_username','profile_id','user_last_name','user_first_name')
-    inlines = [NoteInline]
+    list_display = ('user_username','user_last_name','user_first_name')
+     
 
     def user_username(self,x):
         return x.user.username
@@ -37,7 +37,7 @@ class ProfileAdmin(admin.ModelAdmin):
 
 @admin.register(Note)
 class NoteAdmin(admin.ModelAdmin):
-    list_display = ('title','note_id','author','school','semester','course')
+    list_display = ('title','note_id','school','semester','course')
     pass
 
 @admin.register(Professor)
