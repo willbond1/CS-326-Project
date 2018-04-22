@@ -5,12 +5,10 @@ from django.dispatch import receiver
 
 # Create your models here.
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
     bio = models.TextField(max_length=500, blank=True)
     profile_pic = models.ImageField(upload_to="../media/profiles/")
     karma = models.SmallIntegerField(default=0)
-
- 
 
 class School(models.Model):
     school_id = models.AutoField(primary_key = True)
@@ -38,13 +36,15 @@ class Course(models.Model):
 
 class Note(models.Model):
     note_id = models.AutoField(primary_key = True)
+    author = models.ForeignKey(User, related_name="notes")
     note_file = models.FileField(upload_to="../media/notes/")
     thumbnail = models.ImageField(upload_to="../media/thumbnails/", blank=True)
     school = models.ForeignKey(School, null=True, on_delete = models.SET_NULL)
-    title = models.CharField(max_length = 180, verbose_name = 'Title')
+    title = models.CharField(max_length = 180, verbose_name = 'Title') # Can be changed to a date or whatever
     course = models.ForeignKey(Course, null=True, on_delete = models.SET_NULL)
     semester = models.CharField(max_length = 40, verbose_name = 'Semester')
+    # note_file = models.URLField(verbose_name='Note URL')
     date_uploaded = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return '{0}'.format(self.title)
+    class Meta:
+        ordering = ["-date_uploaded"]
