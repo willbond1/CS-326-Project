@@ -47,7 +47,7 @@ class NoteDetailView(generic.DetailView):
 class UpView(generic.ListView):
    template_name = 'uploaded_notes.html'
    context_object_name = 'recent_uploaded_notes_list'
-   queryset = Note.objects.all()
+   queryset = request.user.notes.all
 
 
 class NoteCreateView(generic.edit.CreateView):
@@ -55,8 +55,8 @@ class NoteCreateView(generic.edit.CreateView):
         if request.method == "POST":
             form = NoteForm(request.POST, request.FILES)
             if form.is_valid():
-                 
                 cur_note = form.save(commit=False)
+                cur_note.author = request.user
                 cur_note.save()
                 messages.success(request, ("Noteset successfully uploaded!"))
                 return redirect('note-view',pk=cur_note.note_id)
@@ -81,22 +81,6 @@ def register(request):
     return render(request, 'note_app/register.html',{
             "form": f
         })
-
-class CommentCreateView(generic.edit.CreateView):
-    def add_comment(request):
-        if request.method == "POST":
-            form = CommentForm(request.POST)
-            if form.is_valid():
-                cur_comm = form.save(commit=False)
-                cur_comm.author = request.user.profile
-                cur_comm.author.post_history.add(cur_comm)
-                #ASSOCIATE COMMENT AND NOTESET WITH EACH OTHER
-                form.save()
-                return redirect('')
-            else:
-                form = CommentForm()
-
-        return render(request, "", {"form": form})
 
 class SearchView(generic.ListView):
     template_name = 'search.html'

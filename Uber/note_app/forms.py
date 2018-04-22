@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Profile, Note
+from .models import Profile, Note, Comment
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 
@@ -44,7 +44,7 @@ class CustomUserCreationForm(forms.Form):
         password2 = self.cleaned_data.get('password2')
 
         if password1 and password2 and password1 != password2:
-            raise ValidationError("Password don't match")
+            raise ValidationError("Passwords don't match")
 
         return password2
 
@@ -54,5 +54,4 @@ class CustomUserCreationForm(forms.Form):
             self.cleaned_data['email'],
             self.cleaned_data['password1']
         )
-        profile = Profile.objects.create(user=user)
         return user
