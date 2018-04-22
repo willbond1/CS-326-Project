@@ -47,7 +47,9 @@ class NoteDetailView(generic.DetailView):
 class UpView(generic.ListView):
    template_name = 'uploaded_notes.html'
    context_object_name = 'recent_uploaded_notes_list'
-   queryset = request.user.notes.all
+
+   def get_queryset(self):
+       return Note.objects.filter(author=self.request.user)
 
 
 class NoteCreateView(generic.edit.CreateView):

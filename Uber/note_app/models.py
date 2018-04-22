@@ -36,15 +36,17 @@ class Course(models.Model):
 
 class Note(models.Model):
     note_id = models.AutoField(primary_key = True)
-    author = models.ForeignKey(User, related_name="notes")
+    author = models.ForeignKey(User, related_name="notes", on_delete=models.CASCADE, default=1)
     note_file = models.FileField(upload_to="../media/notes/")
     thumbnail = models.ImageField(upload_to="../media/thumbnails/", blank=True)
     school = models.ForeignKey(School, null=True, on_delete = models.SET_NULL)
-    title = models.CharField(max_length = 180, verbose_name = 'Title') # Can be changed to a date or whatever
+    title = models.CharField(max_length = 180, verbose_name = 'Title')
     course = models.ForeignKey(Course, null=True, on_delete = models.SET_NULL)
     semester = models.CharField(max_length = 40, verbose_name = 'Semester')
-    # note_file = models.URLField(verbose_name='Note URL')
     date_uploaded = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ["-date_uploaded"]
+
+    def __str__(self):
+        return '{0}'.format(self.title) 

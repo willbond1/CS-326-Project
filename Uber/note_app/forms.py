@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Profile, Note, Comment
+from .models import Profile, Note
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 
@@ -54,4 +54,5 @@ class CustomUserCreationForm(forms.Form):
             self.cleaned_data['email'],
             self.cleaned_data['password1']
         )
+        profile = Profile.objects.create(user=user)
         return user
